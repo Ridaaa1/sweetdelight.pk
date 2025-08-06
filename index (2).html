@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sweet Delight - Home Bakery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background: #fff8f3;
+      color: #591108;
+    }
+
+    header {
+      background: #f8c9c1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+color: #591108;
+   }
+   .heading-group {
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+.custom-orders {
+  font-size: 16px
+  color: #5c4d4d;
+  margin-top: 4px;
+}
+
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav a, nav button {
+      background: none;
+      border: none;
+      font: inherit;
+      color: #591108;
+      padding: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    h2 {
+      border-bottom: 2px solid #f8c9c1;
+      padding-bottom: 5px;
+      margin-top: 40px;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    .product-list, .review-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: flex-start;
+    }
+
+    .product, .review-img {
+      background: white;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 200px;
+      text-align: center;
+    }
+
+    .product img, .review-img img {
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .cart-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+    }
+
+    .cart-content {
+      background: white;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .close { position: absolute; right: 10px; top: 10px; cursor: pointer; font-size: 20px; }
+
+    .checkout {
+      background: green;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      width: 100%;
+      border: none;
+      margin-top: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: 'Playfair Display', serif;
+    }
+
+    footer {
+      background: #f8c9c1;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .product-list, .review-list {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+   <!-- Logo Container -->
+<div class="logo-container">
+  <img src="logo.jpeg" alt="Sweet Delight Logo" class="logo" />
+</div>
+ <h1>Sweet Delight-Homemade baked goods with love</h1>
+    </div>
+    <nav>
+      <a href="#cakes">Cakes</a>
+      <a href="#brownies">Brownies</a>
+      <a href="#cupcakes">Cupcakes</a>
+      <a href="#contact">Contact</a>
+      <button onclick="openCart()">Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+  </header>
+
+  <!-- Cakes Section -->
+  <section id="cakes" class="section">
+    <h2>Cakes- Custom Orders Available</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="chc.jpeg" />
+        <h3>Choco Melted Bliss
+                 (1 Ib.)</h3>
+        <p>Rs. 1000</p>
+        <button onclick="addToCart('Choco Melted Bliss-1 Ib.', 1000)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="pinkcake.jpg" />
+        <h3>Frosted Pink Delight 
+		(1 Ib.)</h3>
+        <p>Rs. 1000</p>
+        <button onclick="addToCart('Frosted Pink Delight-1 Ib', 1000)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="bluecake.jpeg" />
+        <h3>Blue Bliss Chocolate Cake 
+		(1 Ib.)</h3>
+        <p>Rs. 1000</p>
+        <button onclick="addToCart('Blue Bliss Chocolate Cake-1 Ib', 1000)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="milkcake.jpeg" />
+        <h3>3 Layer Milk Cake-500g</h3>
+        <p>Rs. 1250</p>
+        <button onclick="addToCart('3 Layer Milk Cake-500g ', 1250)">Add to Cart</button>
+      </div>
+	  <div class="product">
+        <img src="chcfudge.jpeg" />
+        <h3>Midnight Fudge
+		  (1 Ib.)</h3>
+        <p>Rs. 1000</p>
+        <button onclick="addToCart('Midnight Fudge-1 Ib', 1000)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brownies Section -->
+  <section id="brownies" class="section">
+    <h2>Brownies</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="bakery.jpeg" />
+        <h3>Bakery Style Choco Brownie-6pcs</h3>
+        <p>Rs. 600</p>
+        <button onclick="addToCart('Bakery Style Choco Brownie-6pcs', 600)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="fudge.jpg" />
+        <h3>Fudge Brownie-6pcs</h3>
+        <p>Rs. 600</p>
+        <button onclick="addToCart('Fudge Brownie-6pcs', 600)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cupcake Section -->
+  <section id="cupcakes" class="section">
+    <h2>Cupcakes</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="vancake.jpeg" />
+        <h3>Frosted  Vanilla Dream-6 pcs</h3>
+        <p>Rs. 550</p>
+        <button onclick="addToCart('Frosted Vanilla Dream-6pcs', 550)">Add to Cart</button>
+      </div>
+	  <div class="product-list">
+      <div class="product">
+        <img src="ccake.jpeg" />
+        <h3>Frosted Choco Dream-6 pcs</h3>
+        <p>Rs. 600</p>
+        <button onclick="addToCart('Frosted Choco Dream-6pcs', 600)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="section">
+    <h2>Customer Reviews</h2>
+    <div class="review-list">
+      <div class="review-img"><img src="r1.jpg" /></div>
+      <div class="review-img"><img src="r2.jpg" /></div>
+	  <div class="review-img"><img src="r3.jpg" /></div>
+      <div class="review-img"><img src="r4.jpg" /></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <form onsubmit="sendMessage(event)">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p style="margin-top:15px;">
+      <a href="https://www.instagram.com/sweet_delight124?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">📷 Follow us on Instagram</a>
+	        <a href="https://wa.me/+923281069261?text= " target="_blank">📷 Place your custom orders here</a>
+
+    </p>
+  </section>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-content">
+      <span class="close" onclick="closeCart()">&times;</span>
+      <h3>Your Cart</h3>
+      <ul id="cart-items"></ul>
+      <p id="total">Total: Rs. 0</p>
+      <a id="whatsapp-link" target="_blank">
+        <button class="checkout">Checkout via WhatsApp</button>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Sweet Delight | Baked with ❤️</p>
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      document.getElementById("cart-count").textContent = cart.length;
+    }
+
+    function openCart() {
+      const modal = document.getElementById("cart-modal");
+      const list = document.getElementById("cart-items");
+      const totalText = document.getElementById("total");
+      const link = document.getElementById("whatsapp-link");
+
+      list.innerHTML = "";
+      let total = 0;
+      let message = "Hello! I'd like to order:%0A";
+      cart.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - Rs. ${item.price}`;
+        list.appendChild(li);
+        total += item.price;
+        message += `• ${item.name} - Rs. ${item.price}%0A`;
+      });
+
+      totalText.textContent = `Total: Rs. ${total}`;
+      message += `Total: Rs. ${total}`;
+      link.href = `https://wa.me/+923281069261?text=${message}`; // 
+      modal.style.display = "flex";
+    }
+
+    function closeCart() {
+      document.getElementById("cart-modal").style.display = "none";
+    }
+
+    function sendMessage(e) {
+      e.preventDefault();
+      alert("Message sent! Thank you for contacting us.");
+    }
+  </script>
+</body>
+</html>
